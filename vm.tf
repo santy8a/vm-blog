@@ -104,5 +104,5 @@ module "configure_vm" {
   source    = "./modules/playbook-execution/"
   username  = var.username
   password  = var.password
-  dns_label = var.dns_label
+  dns_label = "${var.dns_label}.northeurope.cloudapp.azure.com"
 }
