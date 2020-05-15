@@ -88,9 +88,13 @@ resource "azurerm_virtual_machine_extension" "docker" {
   name                       = "docker"
   virtual_machine_id         = azurerm_virtual_machine.main.id
   publisher                  = "Microsoft.Azure.Extensions"
-  type                       = "DockerExtension"
-  type_handler_version       = "1.0"
-  auto_upgrade_minor_version = true 
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
 
-  settings = {}
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "apt-get update && apt-get install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && apt-get update && apt-get install docker-ce && systemctl enable docker && usermod -aG docker azureuser"
+    }
+SETTINGS
 }
