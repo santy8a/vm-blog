@@ -6,7 +6,7 @@ resource null_resource "install_docker" {
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible all --inventory="${var.dns_label}.northeurope.cloudapp.azure.com", \
     -m ping -c paramiko -u ${var.username} \
-    --extra-vars="{ \"ansible_password\": \"${var.password}\", \
+    --extra-vars="{ \"ansible_password\": \"${var.password}\" \
      EOT
   }
 }
