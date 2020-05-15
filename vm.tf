@@ -93,8 +93,8 @@ resource "azurerm_virtual_machine_extension" "docker" {
 
   settings = <<SETTINGS
     {
-        "fileUris": "https://raw.githubusercontent.com/santy8a/vm-blog/master/install-docker-ubuntu.sh",
-        "commandToExecute": "sh install-docker-ubuntu.sh"
+        "fileUris": ["https://raw.githubusercontent.com/santy8a/vm-blog/master/install-docker-ubuntu.sh"],
+        "commandToExecute": "./install-docker-ubuntu.sh"
     }
 SETTINGS
 }
