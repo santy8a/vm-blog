@@ -31,7 +31,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
     location            = azurerm_resource_group.main.location
     resource_group_name = azurerm_resource_group.main.name
     allocation_method   = "Dynamic"
-    domain_name_label   = "santy8a8a"
+    domain_name_label   = var.dns_label
 }
 
 resource "azurerm_network_interface" "main" {
@@ -99,3 +99,10 @@ resource "azurerm_virtual_machine" "main" {
     }
 SETTINGS
 }*/
+
+module "configure_vm" {
+  source    = "./modules/playbook-execution/"
+  username  = var.username
+  password  = var.password
+  dns_label = var.dns_label
+}
