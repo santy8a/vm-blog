@@ -5,7 +5,7 @@
   tasks:
 
     # Chown filesystems
-    - name: Set owner for MySQL directories
+    - name: Set docker directory
       file:
         path: "/docker"
         state: directory
@@ -17,4 +17,4 @@
         dest: "/docker"
 
     - name: Run a script
-      script: /docker/install-docker-ubuntu.sh
+      command: sh /docker/install-docker-ubuntu.sh
