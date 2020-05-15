@@ -6,10 +6,6 @@ provider "azurerm" {
     features {}
 }
 
-variable "prefix" {
-  default = "blog"
-}
-
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = "northeurope"
