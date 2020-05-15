@@ -1,0 +1,7 @@
+---
+- name: call config check
+  hosts: all
+  become: true
+  tasks:
+    - name: Test
+      command: ls -la

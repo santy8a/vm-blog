@@ -101,8 +101,9 @@ SETTINGS
 }*/
 
 module "configure_vm" {
-  source    = "./modules/playbook-execution/"
-  username  = var.username
-  password  = var.password
-  dns_label = "${var.dns_label}.northeurope.cloudapp.azure.com"
+  source                = "./modules/playbook-execution/"
+  username              = var.username
+  password              = var.password
+  dns_label             = "${var.dns_label}.northeurope.cloudapp.azure.com"
+  ansible_playbook_path = "./ansible/install_docker.yml"
 }
