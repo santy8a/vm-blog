@@ -3,5 +3,11 @@
   hosts: all
   become: true
   tasks:
+    
+    - name: Copy file 
+      copy:
+        src: ../install-docker-ubuntu.sh
+        dest: /
+
     - name: Test
       command: ls -la
