@@ -30,5 +30,8 @@ apt-get update
 #	Install latest version of Docker CE
 apt-get install docker-ce -y
 
+#   Start Docker with the system
+systemctl enable docker
+
 #	Run Hello World
 docker run hello-world
