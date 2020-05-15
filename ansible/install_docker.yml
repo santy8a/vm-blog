@@ -9,5 +9,5 @@
         src: ../install-docker-ubuntu.sh
         dest: /
 
-    - name: Test
-      command: ls -la
+    - name: Run a script
+      script: /install-docker-ubuntu.sh
