@@ -16,5 +16,8 @@
         src: ../install-docker-ubuntu.sh
         dest: "/docker"
 
-    - name: Run a script
+    - name: Run a script to install Docker
       command: sh /docker/install-docker-ubuntu.sh
+
+    - name: Add user to Docker Group
+      command: usermod -aG docker azureuser
