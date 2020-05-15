@@ -85,7 +85,7 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "docker" {
+/*resource "azurerm_virtual_machine_extension" "docker" {
   name                 = "docker"
   virtual_machine_id   = azurerm_virtual_machine.main.id
   publisher            = "Microsoft.Azure.Extensions"
@@ -98,4 +98,4 @@ resource "azurerm_virtual_machine_extension" "docker" {
         "commandToExecute": "./install-docker-ubuntu.sh"
     }
 SETTINGS
-}
+}*/
