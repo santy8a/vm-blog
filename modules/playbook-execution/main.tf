@@ -1,5 +1,5 @@
 # This is how we call Ansible and pass in variables from Terraform.
-resource null_resource "install_docker" {
+resource null_resource "install_docker_tes" {
   provisioner "local-exec" {
     command = <<EOT
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \

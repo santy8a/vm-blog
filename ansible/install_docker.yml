@@ -3,11 +3,18 @@
   hosts: all
   become: true
   tasks:
+
+    # Chown filesystems
+    - name: Set owner for MySQL directories
+      file:
+        path: "/docker"
+        state: directory
+        mode: '777'
     
     - name: Copy file 
       copy:
         src: ../install-docker-ubuntu.sh
-        dest: /
+        dest: "/docker"
 
     - name: Run a script
-      script: /install-docker-ubuntu.sh
+      script: /docker/install-docker-ubuntu.sh
