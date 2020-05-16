@@ -85,21 +85,6 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
-/*resource "azurerm_virtual_machine_extension" "docker" {
-  name                 = "docker"
-  virtual_machine_id   = azurerm_virtual_machine.main.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-
-  settings = <<SETTINGS
-    {
-        "fileUris": ["https://raw.githubusercontent.com/santy8a/vm-blog/master/install-docker-ubuntu.sh"],
-        "commandToExecute": "./install-docker-ubuntu.sh"
-    }
-SETTINGS
-}*/
-
 module "configure_vm" {
   source                = "./modules/playbook-execution/"
   username              = var.username
