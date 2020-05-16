@@ -1,0 +1,13 @@
+---
+- name: call config check
+  hosts: all
+  #become: true
+  tasks:
+    
+    - name: Copy Dockerfile
+      copy:
+        src: ../Dockerfile
+        dest: "/docker"
+
+    - name: Run a script to install Docker
+      command: docker build --tag blog /docker/Dockerfile
