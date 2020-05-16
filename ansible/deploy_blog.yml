@@ -10,4 +10,4 @@
         dest: "/docker"
 
     - name: Run a script to install Docker
-      command: docker build --tag blog /docker/Dockerfile
+      command: docker build --tag blog /docker/
