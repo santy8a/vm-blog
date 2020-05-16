@@ -13,3 +13,8 @@ variable "dns_label" {
 variable "ansible_playbook_path" {
   
 }
+
+variable "vm_id" {
+  
+}
+

@@ -91,4 +91,5 @@ module "configure_vm" {
   password              = var.password
   dns_label             = "${var.dns_label}.northeurope.cloudapp.azure.com"
   ansible_playbook_path = "./ansible/install_docker.yml"
+  vm_id                 = azurerm_virtual_machine.main.id
 }

@@ -11,6 +11,6 @@ resource null_resource "install_docker" {
      EOT
   }
   triggers = {
-    "before" = "${azurerm_virtual_machine.main.id}"
+    "before" = "${var.vm_id}"
  }
 }
