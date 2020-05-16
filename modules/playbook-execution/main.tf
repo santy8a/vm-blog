@@ -7,6 +7,7 @@ resource null_resource "install_docker" {
     ansible-playbook --inventory '${var.dns_label}', \
     -c paramiko -u '${var.username}' \
     --extra-vars="{ \"ansible_password\": \"${var.password}\", \
+    \"azure_instance_ip\": \"${var.dns_label}\", \
     \"user_docker\": \"${var.username}\"}" ${var.ansible_playbook_path} -vvv
      EOT
   }
