@@ -25,4 +25,4 @@
       command: sh /docker/install-docker-ubuntu.sh
 
     - name: Add user to Docker Group
-      command: usermod -aG docker azureuser
+      command: usermod -aG docker "{{ user_docker }}"

@@ -6,7 +6,8 @@ resource null_resource "install_docker" {
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible-playbook --inventory '${var.dns_label}', \
     -c paramiko -u '${var.username}' \
-    --extra-vars="{ \"ansible_password\": \"${var.password}\"}" ${var.ansible_playbook_path} -vvv
+    --extra-vars="{ \"ansible_password\": \"${var.password}\", \
+    \"user_docker\": \"${var.username}\"}" ${var.ansible_playbook_path} -vvv
      EOT
   }
 }
