@@ -8,6 +8,8 @@
     - name: Set docker directory
       file:
         path: "/docker"
+        owner: "{{ user_docker }}"
+        group: "{{ user_docker }}"
         state: directory
         mode: '777'
     
@@ -21,3 +23,36 @@
 
     - name: Add user to Docker Group
       command: usermod -aG docker "{{ user_docker }}"
+
+      ## Despliegue Docker
+
+- name: Despliegue Docker
+  hosts: all
+  #become: true
+  tasks:
+    
+    - name: Copy Dockerfile
+      copy:
+        src: ../Dockerfile
+        dest: "/docker"
+
+    - name: Run command to build image
+      command: docker build --tag blog /docker/
+
+    - name: Run command to create container Paso 1 de 6 
+      command: docker run -d --name pre-blog -it blog
+
+    - name: Run command to create container Paso 2 de 6
+      command: docker exec -it pre-blog bash -c "cd blog && gatsby build"
+
+    - name: Run command to create container Paso 3 de 6
+      command: docker cp pre-blog:/blog /docker/
+
+    - name: Run command to create container Paso 4 de 6
+      command: docker run -d --name blog -p 80:8000 -it -v /docker/blog/:/blog blog
+
+    - name: Run command to create container Paso 5 de 6
+      command: docker exec -dit blog bash -c "cd blog && gatsby develop --host 0.0.0.0 --port 8000"
+
+    - name: Run command to create container Paso 6 de 6
+      command: docker rm -fv pre-blog
