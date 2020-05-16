@@ -1,5 +1,5 @@
 ---
-- name: call config check
+- name: Install Docker
   hosts: all
   become: true
   tasks:
@@ -24,9 +24,9 @@
     - name: Add user to Docker Group
       command: usermod -aG docker "{{ user_docker }}"
 
-      ## Despliegue Docker
+## Creación de Imagen y Container
 
-- name: Despliegue Docker
+- name: Create Image and Container
   hosts: all
   #become: true
   tasks:
