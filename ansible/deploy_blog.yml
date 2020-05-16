@@ -9,5 +9,8 @@
         src: ../Dockerfile
         dest: "/docker"
 
-    - name: Run a script to install Docker
+    - name: Run command to build image
       command: docker build --tag blog /docker/
+
+    - name: Run command to create container
+      command: docker run --name blog -p 80:8000 -it blog bash
