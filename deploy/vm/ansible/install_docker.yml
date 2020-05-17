@@ -61,4 +61,4 @@
       command: docker rm -fv pre-blog
 
     - name: Run command to create container Step 7 / 7
-      command: cd /docker/blog/ && git init && git add . && git pull
+      command: "git init /docker/blog/ && git pull /docker/blog/"
