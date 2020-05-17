@@ -1,8 +1,7 @@
 # This is how we call Ansible and pass in variables from Terraform.
 resource null_resource "ansible_execute" {
   provisioner "local-exec" {
-    command = <<EOT
-    timeout 2m echo "wait..." \
+    command = timeout 2m bash <<EOT
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible-playbook --inventory '${var.dns_label}', \
