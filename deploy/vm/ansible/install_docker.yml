@@ -1,31 +1,31 @@
 ---
-- name: Install Docker
-  hosts: all
-  become: true
-  tasks:
+# - name: Install Docker
+#   hosts: all
+#   become: true
+#   tasks:
 
-    - name: Wait for SSH to come up
-      wait_for: host={{ azure_instance_ip }} port=22 delay=60 timeout=320 state=started
+#     - name: Wait for SSH to come up
+#       wait_for: host={{ azure_instance_ip }} port=22 delay=60 timeout=320 state=started
 
-    # Chown filesystems
-    - name: Set docker directory
-      file:
-        path: "/docker"
-        owner: "{{ user_docker }}"
-        group: "{{ user_docker }}"
-        state: directory
-        mode: '777'
+#     # Chown filesystems
+#     - name: Set docker directory
+#       file:
+#         path: "/docker"
+#         owner: "{{ user_docker }}"
+#         group: "{{ user_docker }}"
+#         state: directory
+#         mode: '777'
     
-    - name: Copy file 
-      copy:
-        src: ../../../util/install-docker-ubuntu.sh
-        dest: "/docker"
+#     - name: Copy file 
+#       copy:
+#         src: ../../../util/install-docker-ubuntu.sh
+#         dest: "/docker"
 
-    - name: Run a script to install Docker
-      command: sh /docker/install-docker-ubuntu.sh
+#     - name: Run a script to install Docker
+#       command: sh /docker/install-docker-ubuntu.sh
 
-    - name: Add user to Docker Group
-      command: usermod -aG docker "{{ user_docker }}"
+#     - name: Add user to Docker Group
+#       command: usermod -aG docker "{{ user_docker }}"
 
 ## Creación de Imagen y Container
 
@@ -39,26 +39,26 @@
         src: ../../../util/Dockerfile
         dest: "/docker"
 
-    - name: Run command to build image
-      command: docker build --tag blog /docker/
+    # - name: Run command to build image
+    #   command: docker build --tag blog /docker/
 
-    - name: Run command to create container Step 1 / 7 
-      command: docker run -d --name pre-blog -it blog
+    # - name: Run command to create container Step 1 / 7 
+    #   command: docker run -d --name pre-blog -it blog
 
-    - name: Run command to create container Step 2 / 7
-      command: docker exec -it pre-blog bash -c "cd blog && gatsby build"
+    # - name: Run command to create container Step 2 / 7
+    #   command: docker exec -it pre-blog bash -c "cd blog && gatsby build"
 
-    - name: Run command to create container Step 3 / 7
-      command: docker cp pre-blog:/blog /docker/
+    # - name: Run command to create container Step 3 / 7
+    #   command: docker cp pre-blog:/blog /docker/
 
-    - name: Run command to create container Step 4 / 7
-      command: docker run -d --name blog -p 80:8000 -it -v /docker/blog/:/blog blog
+    # - name: Run command to create container Step 4 / 7
+    #   command: docker run -d --name blog -p 80:8000 -it -v /docker/blog/:/blog blog
 
-    - name: Run command to create container Step 5 / 7
-      command: docker exec -dit blog bash -c "cd blog && gatsby develop --host 0.0.0.0 --port 8000"
+    # - name: Run command to create container Step 5 / 7
+    #   command: docker exec -dit blog bash -c "cd blog && gatsby develop --host 0.0.0.0 --port 8000"
 
-    - name: Run command to create container Step 6 / 7
-      command: docker rm -fv pre-blog
+    # - name: Run command to create container Step 6 / 7
+    #   command: docker rm -fv pre-blog
 
     - name: Run command to create container Step 7 / 7
       command: "git init /docker/blog/ && git pull /docker/blog/"
