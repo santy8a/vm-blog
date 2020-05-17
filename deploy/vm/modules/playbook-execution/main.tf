@@ -1,9 +1,9 @@
 # This is how we call Ansible and pass in variables from Terraform.
 resource null_resource "ansible_execute" {
 
-  provisioner "local-exec" {
-    command = "sleep 1m"
-  }
+  # provisioner "local-exec" {
+  #   command = "sleep 1m"
+  # }
   provisioner "local-exec" {
     command = <<EOT
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \

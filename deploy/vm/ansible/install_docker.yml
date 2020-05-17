@@ -60,5 +60,8 @@
     # - name: Run command to create container Step 6 / 7
     #   command: docker rm -fv pre-blog
 
-    - name: Run command to create container Step 7 / 7
-      command: git init /docker/blog/
+    # - name: Run command to create container Step 7 / 7
+    #   command: git init /docker/blog/
+
+    - name: Run command to create container Step 8 / 7
+      command: cd /docker/blog
