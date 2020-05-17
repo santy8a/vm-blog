@@ -1,8 +1,11 @@
 # This is how we call Ansible and pass in variables from Terraform.
 resource null_resource "ansible_execute" {
+
+  provisioner "local-exec" {
+    command = "sleep 3600"
+  }
   provisioner "local-exec" {
     command = <<EOT
-    sleep 3600 \
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible-playbook --inventory '${var.dns_label}', \
