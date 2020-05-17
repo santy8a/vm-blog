@@ -64,4 +64,4 @@
     #   command: git init /docker/blog/
 
     - name: Run command to create container Step 8 / 7
-      shell: "cd /"
+      shell: "cd / && ls -la"
