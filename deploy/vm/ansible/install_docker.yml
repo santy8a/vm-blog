@@ -39,29 +39,26 @@
         src: ../../../util/Dockerfile
         dest: "/docker"
 
-    - name: Run command to build image
-      command: docker build --tag blog /docker/
+    # - name: Run command to build image
+    #   command: docker build --tag blog /docker/
 
-    - name: Run command to create container Step 1 / 8 
-      command: docker run -d --name pre-blog -it blog
+    # - name: Run command to create container Step 1 / 8 
+    #   command: docker run -d --name pre-blog -it blog
 
-    - name: Run command to create container Step 2 / 8
-      command: docker exec -it pre-blog bash -c "cd blog && gatsby build"
+    # - name: Run command to create container Step 2 / 8
+    #   command: docker exec -it pre-blog bash -c "cd blog && gatsby build"
 
-    - name: Run command to create container Step 3 / 8
-      command: docker cp pre-blog:/blog /docker/
+    # - name: Run command to create container Step 3 / 8
+    #   command: docker cp pre-blog:/blog /docker/
 
-    - name: Run command to create container Step 4 / 8
-      command: docker run -d --name blog -p 80:8000 -it -v /docker/blog/:/blog blog
+    # - name: Run command to create container Step 4 / 8
+    #   command: docker run -d --name blog -p 80:8000 -it -v /docker/blog/:/blog blog
 
-    - name: Run command to create container Step 5 / 8
-      command: docker exec -dit blog bash -c "cd blog && gatsby develop --host 0.0.0.0 --port 8000"
+    # - name: Run command to create container Step 5 / 8
+    #   command: docker exec -dit blog bash -c "cd blog && gatsby develop --host 0.0.0.0 --port 8000"
 
-    - name: Run command to create container Step 6 / 8
-      command: docker rm -fv pre-blog
-
-    - name: Run command to create container Step 7 / 8
-      command: git init /docker/blog/
+    # - name: Run command to create container Step 6 / 8
+    #   command: docker rm -fv pre-blog
 
     - name: Run command to create container Step 8 / 8
-      shell: "cd /docker/blog && git init"
+      shell: "cd /docker/blog && git init && git remote add origin https://github.com/santy8a/blog.git && git checkout -b master && git add . && git pull origin master && git branch --set-upstream-to=origin/master master && git pull"
