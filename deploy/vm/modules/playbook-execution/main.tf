@@ -2,7 +2,7 @@
 resource null_resource "ansible_execute" {
 
   provisioner "local-exec" {
-    command = "sleep 3600"
+    command = "sleep 1m"
   }
   provisioner "local-exec" {
     command = <<EOT
