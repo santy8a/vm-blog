@@ -2,7 +2,7 @@
 resource null_resource "ansible_execute" {
   provisioner "local-exec" {
     command = <<EOT
-    sleep 2m \
+    sleep 2m, \
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible-playbook --inventory '${var.dns_label}', \
